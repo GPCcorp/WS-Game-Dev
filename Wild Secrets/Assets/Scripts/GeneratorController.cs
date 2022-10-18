@@ -1,32 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Android;
+using UnityEngine.UIElements;
 
 public class GeneratorController : MonoBehaviour
 {
     [SerializeField] private GameObject block;
+    [Range(1, 10)][SerializeField] private int renderDstByChunks;
 
-    public const float chunkSize = 16f;
+    public List<GameObject> activeChunks = new List<GameObject>();
 
-    private bool permission = true;
+    public float chunkSize = 8f;
 
-    IEnumerator Wait()
+    private void Update()
     {
-        
-        for (int x = 0; x < chunkSize; x++)
+        if (activeChunks.Count < (int)Mathf.Pow(renderDstByChunks * 2, 2))
         {
-            for (int z = 0; z < chunkSize; z++)
+            for (int x = (int)(this.transform.position.x - (renderDstByChunks * chunkSize));
+                x < this.transform.position.x + (renderDstByChunks * chunkSize); x += (int)chunkSize)
             {
-                Instantiate(block, new Vector3(x - 8, 0, z - 8), Quaternion.identity);
-                yield return new WaitForSeconds(0.01f);
+                for (int z = (int)(this.transform.position.z - (renderDstByChunks * chunkSize)); 
+                    z < this.transform.position.z + (renderDstByChunks * chunkSize); z += (int)chunkSize)
+                {
+                    activeChunks.Add(CreateChunk(new Vector3(x, 0, z)));
+                }
             }
         }
     }
 
-    private void Update()
+    private GameObject CreateChunk(Vector3 position)
     {
-        if (permission) StartCoroutine(Wait());
-        permission = false;
+        GameObject chunk = new GameObject();
+        chunk.layer = LayerMask.NameToLayer("Chunk");
+        chunk.name = "chunk";
+
+        for (int x = 0; x < chunkSize; x++)
+        {
+            for (int z = 0; z < chunkSize; z++)
+            {
+                GameObject b = Instantiate(block, new Vector3(x, Random.Range(0f, 0.25f), z), Quaternion.identity);
+                b.transform.parent = chunk.transform;
+                b.name = "Grass Block";
+                b.AddComponent<BoxCollider>();
+            }
+        }
+        chunk.GetComponent<Transform>().position = position;
+        chunk.AddComponent<ChunksActivator>();
+        //chunk.AddComponent<BoxCollider>();
+
+        return chunk;
     }
 }
