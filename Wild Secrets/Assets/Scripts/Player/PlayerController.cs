@@ -1,17 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public CharacterController controller;
-    public Transform cam;
+    [SerializeField] private CharacterController controller;
+    [SerializeField] private Transform cam;
+
+    [SerializeField] private GameObject firstPeson;
+    [SerializeField] private GameObject thirdPerson;
+
+    [SerializeField] private float turnSmoothTime;
+
     private Animator animator;
+    private Vector3 moveVector = Vector3.zero;
+    private Vector3 direction;
+    private Vector3 moveDirection;
+    private Vector3 move;
 
-    public float speed;
+    private float turnSmoothVelocity;
+    private float targetAngle;
+    private float angle;
+    private float vertical;
+    private float horizontal;
 
-    public float turnSmoothTime = 0.1f;
-    float turnSmoothVelocity;
+    private bool isFirstPerson = false;
 
     void Start()
     {
@@ -22,28 +36,91 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        float inputX = Input.GetAxisRaw("Horizontal");
-        float inputY = Input.GetAxisRaw("Vertical");
+        // Variables Initialization
+        horizontal = Input.GetAxisRaw("Horizontal");
+        vertical = Input.GetAxisRaw("Vertical");
+        direction = new Vector3(horizontal, 0f, vertical);
 
-        Vector3 direction = new Vector3(inputX, 0f, inputY).normalized;
+        //Ground behaviour mechanic
+        GroundBehaviourMechanic();
 
-        if (direction.magnitude >= 0.1f)
+        //Check user actions with camera
+        CheckCamera();
+    }
+    private void PlayerMove(float speed)
+    {
+        if (isFirstPerson)
         {
-            animator.SetTrigger("Run");
+            move = transform.right * horizontal + transform.forward * vertical;
 
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            controller.Move(move * speed * Time.deltaTime);
+        }
+        else if (!isFirstPerson)
+        {
+            targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+            angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-            controller.Move(moveDir.normalized * speed * Time.deltaTime);
+            controller.Move(moveDirection.normalized * speed * Time.deltaTime);
         }
-        else
+    }
+    private void GroundBehaviourMechanic()
+    {
+        CheckJump(8, 5);
+        if (direction.magnitude >= 0.1f)
         {
-            animator.SetTrigger("Stand");
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            {
+                StartActions("Run", 12);
+            }
+            else
+            {
+                StartActions("Walk", 5);
+            }
+        }
+        else animator.SetTrigger("Stand");
+    }
+    private void CheckJump(float gravity, float jumpSpeed)
+    {
+        if (controller.isGrounded && Input.GetKey(KeyCode.Space))
+        {
+            //animator.SetTrigger("Jump"); у нас пока нет такой анимации
+            moveVector.y = jumpSpeed;
         }
 
-        
+        moveVector.y -= gravity * Time.deltaTime;
+        controller.Move(moveVector * Time.deltaTime);
+    }
+    private void CheckCamera()
+    {
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            if (isFirstPerson)
+            {
+                firstPeson.SetActive(false);
+                thirdPerson.SetActive(true);
+
+                turnSmoothTime = 0.1f;
+
+                isFirstPerson = false;
+            }
+            else if (!isFirstPerson)
+            {
+                thirdPerson.SetActive(false);
+                firstPeson.SetActive(true);
+
+                turnSmoothTime = 0.4f;
+
+                isFirstPerson = true;
+            }
+        }
+    }
+
+    private void StartActions([Optional] string trigger, [Optional] float speed)
+    {
+        animator.SetTrigger(trigger);
+        PlayerMove(speed);
     }
 }
