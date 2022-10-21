@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Chunk
+  - Block
   - Water
   - UI
   - Player
