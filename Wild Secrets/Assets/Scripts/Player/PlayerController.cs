@@ -76,19 +76,19 @@ public class PlayerController : MonoBehaviour
                 StartActions("Run", 12);
             }
 
-            else if (Input.GetKey(KeyCode.LeftControl))
-            {
-                StartActions("Crouch", 2);
-                controller.height = 0.35f;
-                controller.center = new Vector3(0, 0.175f, 0);
-            }
-
             else
             {
                 StartActions("Walk", 5);
                 controller.height = 0.5f;
                 controller.center = new Vector3(0, 0.25f, 0);
             }
+        }
+
+        else if (Input.GetKey(KeyCode.LeftControl))
+        {
+            StartActions("Crouch", 2);
+            controller.height = 0.35f;
+            controller.center = new Vector3(0, 0.175f, 0);
         }
         else animator.SetTrigger("Stand");
     }
