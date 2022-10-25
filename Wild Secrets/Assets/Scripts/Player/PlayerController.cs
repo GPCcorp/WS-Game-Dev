@@ -68,14 +68,43 @@ public class PlayerController : MonoBehaviour
     }
     private void GroundBehaviourMechanic()
     {
-        CheckJump(8, 5);
-        if (direction.magnitude >= 0.1f)
+        StartCoroutine(CheckJump(8, 5));
+
+
+        //sneak mechanic algorithm - test code (can be deleted and overrited)
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            animator.SetTrigger("Crouch");
+            controller.height = 0.35f;
+            controller.center = new Vector3(0, 0.175f, 0);
+            if (direction.magnitude >= 0.1f)
+            {
+                PlayerMove(0);
+                animator.SetTrigger("Crouch");
+                PlayerMove(2);
+                StartCoroutine(StartActionAfterTime("Sneak", 1));
+
+                controller.height = 0.35f;
+                controller.center = new Vector3(0, 0.175f, 0);
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            PlayerMove(0);
+            animator.SetTrigger("CrouchToStand");
+
+            controller.height = 0.35f;
+            controller.center = new Vector3(0, 0.175f, 0);
+        }
+
+
+        //simple movements
+        else if (direction.magnitude >= 0.1f)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 StartActions("Run", 12);
             }
-
             else
             {
                 StartActions("Walk", 5);
@@ -84,15 +113,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        else if (Input.GetKey(KeyCode.LeftControl))
-        {
-            StartActions("Crouch", 2);
-            controller.height = 0.35f;
-            controller.center = new Vector3(0, 0.175f, 0);
-        }
         else animator.SetTrigger("Stand");
     }
-    private void CheckJump(float gravity, float jumpSpeed)
+    IEnumerator CheckJump(float gravity, float jumpSpeed)
     {
         if (controller.isGrounded && Input.GetKey(KeyCode.Space))
         {
@@ -102,6 +125,8 @@ public class PlayerController : MonoBehaviour
 
         moveVector.y -= gravity * Time.deltaTime;
         controller.Move(moveVector * Time.deltaTime);
+
+        yield return null;
     }
     private void CheckCamera()
     {
@@ -132,5 +157,11 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger(trigger);
         PlayerMove(speed);
+    }
+
+    IEnumerator StartActionAfterTime(string trigger, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        animator.SetTrigger(trigger);
     }
 }

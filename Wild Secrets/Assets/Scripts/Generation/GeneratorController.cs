@@ -7,19 +7,24 @@ public class GeneratorController : MonoBehaviour
     [SerializeField] private GameObject block;
     [SerializeField] private int playerFacingDirection;
     [SerializeField] private CardinalDirection cardinalDirection;
+    [SerializeField] private int blocksPassed;
 
     private float vertical;
     private float horizontal;
 
     [Range(5, 15)] public int renderDistance;
 
+    private Vector3 playerStartPosition;
+
     private void Start()
     {
+        playerStartPosition = this.transform.position;
+
         for (int x = -renderDistance; x < renderDistance; x++)
         {
             for (int z = -renderDistance; z < renderDistance; z++)
             {
-                block.transform.position = new Vector3(this.transform.position.x + x * 2, 0, this.transform.position.x + z * 2);
+                block.transform.position = new Vector3(this.transform.position.x + x, 0, this.transform.position.x + z);
                 Instantiate(block);
             }
         }
@@ -41,6 +46,7 @@ public class GeneratorController : MonoBehaviour
         switch (cardinalDirection)
         {
             case CardinalDirection.North:
+
                 break;
 
             case CardinalDirection.South:
@@ -68,7 +74,17 @@ public class GeneratorController : MonoBehaviour
 
     private void BlockPassingController() //функция для замера количества прйденных блоков
     {
+        Vector3 currentPosition = this.transform.position;
 
+        float differenceX = Mathf.Abs(playerStartPosition.x - currentPosition.x);
+        float differenceZ = Mathf.Abs(playerStartPosition.z - currentPosition.z);
+
+        if ((differenceX > 0.9f && differenceX < 1f) || (differenceZ > 0.9f && differenceZ < 1f))
+        {
+            UpdateLandscape();
+            playerStartPosition = this.transform.position;
+            blocksPassed++;
+        }
     }
 
     private void CheckCardinalDirection()
