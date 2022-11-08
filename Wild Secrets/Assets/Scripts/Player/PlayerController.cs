@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     }
     private void GroundBehaviourMechanic()
     {
-        StartCoroutine(CheckJump(8, 5));
+        StartCoroutine(CheckJump(10, 5));
 
 
         //sneak mechanic algorithm - test code (can be deleted and overrited)
@@ -108,18 +108,18 @@ public class PlayerController : MonoBehaviour
             else
             {
                 StartActions("Walk", 5);
-                controller.height = 0.5f;
-                controller.center = new Vector3(0, 0.25f, 0);
             }
         }
 
         else animator.SetTrigger("Stand");
+        controller.height = 0.5f;
+        controller.center = new Vector3(0, 0.25f, 0);
     }
     IEnumerator CheckJump(float gravity, float jumpSpeed)
     {
         if (controller.isGrounded && Input.GetKey(KeyCode.Space))
         {
-            //animator.SetTrigger("Jump"); у нас пока нет такой анимации
+            animator.SetTrigger("Jump"); 
             moveVector.y = jumpSpeed;
         }
 
@@ -128,6 +128,7 @@ public class PlayerController : MonoBehaviour
 
         yield return null;
     }
+
     private void CheckCamera()
     {
         if (Input.GetKeyDown(KeyCode.F5))
