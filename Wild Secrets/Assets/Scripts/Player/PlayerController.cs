@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -150,6 +151,8 @@ public class PlayerController : MonoBehaviour
                 turnSmoothTime = 0.1f;
 
                 isFirstPerson = false;
+
+                GameObject.Find("Game World").GetComponent<GameWorld>().mainCamera = Camera.main;
             }
             else if (!isFirstPerson)
             {
@@ -159,6 +162,8 @@ public class PlayerController : MonoBehaviour
                 turnSmoothTime = 0.4f;
 
                 isFirstPerson = true;
+
+                GameObject.Find("Game World").GetComponent<GameWorld>().mainCamera = Camera.main;
             }
         }
     }

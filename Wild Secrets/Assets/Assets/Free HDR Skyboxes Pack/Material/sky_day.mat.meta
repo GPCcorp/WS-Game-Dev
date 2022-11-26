@@ -1,8 +1,12 @@
 fileFormatVersion: 2
-guid: 310d943f4e5432142a400a70bdbafff2
+<<<<<<< Updated upstream:Wild Secrets/Assets/Assets/Free HDR Skyboxes Pack/Material/sky_day.mat.meta
+guid: c573dc01f6282c749843e94dcb2bc99e
+=======
+guid: fc93c0bc72067ed4fb3808ce8d2a7e3a
+>>>>>>> Stashed changes:Wild Secrets/Assets/Assets/FastNoise Unity/Demo Scenes/Mesh WarpSettings.lighting.meta
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 2100000
+  mainObjectFileID: 4890085278179872738
   userData: 
   assetBundleName: 
   assetBundleVariant: 
