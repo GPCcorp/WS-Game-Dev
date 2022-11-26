@@ -7,13 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream:Wild Secrets/Assets/Assets/Free HDR Skyboxes Pack/Material/sky-3.mat
-  m_Name: sky-3
-  m_Shader: {fileID: 103, guid: 0000000000000000f000000000000000, type: 0}
-=======
-  m_Name: Greeen
+  m_Name: WorldMaterial
   m_Shader: {fileID: 4800000, guid: a0c15a4ee58333a41bb6e348f9cb2730, type: 3}
->>>>>>> Stashed changes:Wild Secrets/Assets/Scripts/Generation/Greeen.mat
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -61,13 +56,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-<<<<<<< Updated upstream:Wild Secrets/Assets/Assets/Free HDR Skyboxes Pack/Material/sky-3.mat
-    - _Tex:
-        m_Texture: {fileID: 8900000, guid: 5a817d7ded3353146a488c3ec0e7bab6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-=======
->>>>>>> Stashed changes:Wild Secrets/Assets/Scripts/Generation/Greeen.mat
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
@@ -75,7 +63,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
@@ -90,8 +78,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-<<<<<<< Updated upstream:Wild Secrets/Assets/Assets/Free HDR Skyboxes Pack/Material/sky-3.mat
-    - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
-=======
->>>>>>> Stashed changes:Wild Secrets/Assets/Scripts/Generation/Greeen.mat
   m_BuildTextureStacks: []

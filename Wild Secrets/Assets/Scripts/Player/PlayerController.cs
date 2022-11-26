@@ -152,7 +152,8 @@ public class PlayerController : MonoBehaviour
 
                 isFirstPerson = false;
 
-                GameObject.Find("Game World").GetComponent<GameWorld>().mainCamera = Camera.main;
+                try { GameObject.Find("Game World").GetComponent<GameWorld>().mainCamera = Camera.main; }
+                catch (System.Exception) { return; }
             }
             else if (!isFirstPerson)
             {
@@ -163,7 +164,10 @@ public class PlayerController : MonoBehaviour
 
                 isFirstPerson = true;
 
-                GameObject.Find("Game World").GetComponent<GameWorld>().mainCamera = Camera.main;
+                try { GameObject.Find("Game World").GetComponent<GameWorld>().mainCamera = Camera.main; }
+                catch (System.Exception) { return; }
+
+                
             }
         }
     }

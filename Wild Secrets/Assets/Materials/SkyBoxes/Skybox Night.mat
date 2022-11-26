@@ -2,23 +2,13 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 8
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-<<<<<<< Updated upstream:Wild Secrets/Assets/Assets/Free HDR Skyboxes Pack/Material/sky_day.mat
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: sky_day
-  m_Shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords:
-  - _SUNDISK_HIGH_QUALITY
-  m_InvalidKeywords: []
-=======
   m_PrefabInternal: {fileID: 0}
   m_Name: Skybox Night
   m_Shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _SUNDISK_SIMPLE
->>>>>>> Stashed changes:Wild Secrets/Assets/Materials/SkyBoxes/Skybox Night.mat
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -28,10 +18,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BackTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -48,19 +34,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _DownTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FrontTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _LeftTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -80,35 +54,13 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-<<<<<<< Updated upstream:Wild Secrets/Assets/Assets/Free HDR Skyboxes Pack/Material/sky_day.mat
-    - _RightTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Tex:
-        m_Texture: {fileID: 8900000, guid: c01fc2bc2ee35bb40bc54ed635cd5d4b, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _UpTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AtmosphereThickness: 1
-=======
     m_Floats:
     - _AtmosphereThickness: 0.4
->>>>>>> Stashed changes:Wild Secrets/Assets/Materials/SkyBoxes/Skybox Night.mat
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-<<<<<<< Updated upstream:Wild Secrets/Assets/Assets/Free HDR Skyboxes Pack/Material/sky_day.mat
-    - _Exposure: 1.5
-=======
     - _Exposure: 0.03
->>>>>>> Stashed changes:Wild Secrets/Assets/Materials/SkyBoxes/Skybox Night.mat
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -119,26 +71,13 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-<<<<<<< Updated upstream:Wild Secrets/Assets/Assets/Free HDR Skyboxes Pack/Material/sky_day.mat
-    - _SunDisk: 2
-    - _SunSize: 0.068
-    - _SunSizeConvergence: 5
-=======
     - _SunDisk: 1
     - _SunSize: 0.03
     - _SunSizeConvergence: 10
->>>>>>> Stashed changes:Wild Secrets/Assets/Materials/SkyBoxes/Skybox Night.mat
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-<<<<<<< Updated upstream:Wild Secrets/Assets/Assets/Free HDR Skyboxes Pack/Material/sky_day.mat
-    - _GroundColor: {r: 0.36899996, g: 0.34899998, b: 0.34099993, a: 1}
-    - _SkyTint: {r: 1, g: 1, b: 1, a: 1}
-    - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
-  m_BuildTextureStacks: []
-=======
     - _GroundColor: {r: 0.16460484, g: 0.17793769, b: 0.254717, a: 1}
     - _SkyTint: {r: 0.4289338, g: 0.5919413, b: 0.764151, a: 1}
->>>>>>> Stashed changes:Wild Secrets/Assets/Materials/SkyBoxes/Skybox Night.mat
